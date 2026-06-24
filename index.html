@@ -46,7 +46,8 @@
   #navshell.sc{background:rgba(5,9,18,.75);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
   nav{display:flex;align-items:center;justify-content:space-between;height:76px;max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .brand{display:flex;align-items:center;gap:11px}
-  .brand .logomk{width:34px;height:34px}
+  .brand .logomk{width:38px;height:38px;object-fit:contain;mix-blend-mode:screen}
+  .hero-logo{width:min(300px,64vw);height:auto;margin:0 auto 20px;display:block;mix-blend-mode:screen;filter:drop-shadow(0 0 38px rgba(0,196,255,.45))}
   .brand b{font-family:'Orbitron',sans-serif;font-weight:900;font-size:18px;letter-spacing:2px;color:#fff}
   .brand b i{color:var(--cyan);font-style:normal}
   .nlinks{display:flex;align-items:center;gap:32px}
@@ -171,12 +172,7 @@
 <div id="navshell">
   <nav>
     <a class="brand" href="#top">
-      <svg class="logomk" viewBox="0 0 40 40" aria-hidden="true">
-        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C4FF"/><stop offset="1" stop-color="#0066a0"/></linearGradient></defs>
-        <path d="M20 2 L35 11 V29 L20 38 L5 29 V11 Z" fill="none" stroke="url(#g)" stroke-width="1.6"/>
-        <path d="M13 27 V14 L27 27 V14" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="20" cy="20" r="2" fill="#00C4FF"/>
-      </svg>
+      <img class="logomk" src="assets/nexus-atom.png" alt="NEXUS AIO" />
       <b>NEXUS<i>AIO</i></b>
     </a>
     <div class="nlinks">
@@ -197,6 +193,7 @@
 <header id="hero">
   <canvas id="net"></canvas>
   <div class="wrap hero-in">
+    <img class="hero-logo" src="assets/nexus-logo.png" alt="NEXUS AIO — ecosistema todo-en-uno" />
     <div class="hero-badge"><span class="pulse"></span><span>ERP · HCM · DTE · IA</span></div>
     <h1>Tu empresa, en un<br><span class="grad">solo sistema</span>. <span class="l2">Operada por IA.</span></h1>
     <p class="sub">Nexus AIO unifica finanzas, recursos humanos y facturación electrónica en un único ecosistema — potenciado por <b style="color:#bfe6f7;font-weight:600">Eva</b>, la inteligencia que ejecuta. Construido y probado en operaciones reales de El Salvador.</p>
@@ -276,18 +273,18 @@
 <section class="pad" id="real">
   <div class="wrap real-grid">
     <div class="reveal">
-      <span class="eyebrow">Probado en el mundo real</span>
-      <h2>No nació en un laboratorio. Nació en una <span class="grad">cocina.</span></h2>
-      <p>Cada módulo de Nexus AIO se usa primero en las empresas reales de GRUPO ARPE — como Smoke Lover's — antes de venderse. Lo que llega a tus manos ya facturó, ya pagó nómina y ya cerró meses reales.</p>
-      <p>Mientras otros refactorizan código de 2023 para cumplir la norma DTE obligatoria, Nexus AIO arranca construido sobre la versión nueva. Ventaja técnica medible, no marketing.</p>
+      <span class="eyebrow">El método Nexus</span>
+      <h2>Validado en un ecosistema real, <span class="grad">no en un demo.</span></h2>
+      <p>Nexus AIO se construye dentro de GRUPO ARPE y se prueba en nuestras propias operaciones antes de salir al mercado. Cada módulo factura, paga nómina y cierra meses reales en nuestras empresas — empezando por Smoke Lover's, nuestro sandbox vivo.</p>
+      <p>Esa es la tesis del ecosistema: operaciones reales que <b style="color:#bfe6f7;font-weight:600">validan y financian</b> la tecnología, para escalar como el ERP de Centroamérica. Y mientras otros refactorizan código viejo para cumplir la norma DTE obligatoria, Nexus arranca construido sobre la versión 2026.</p>
     </div>
     <div class="proof-card reveal">
-      <div class="q">"No construimos un software y luego buscamos clientes. Construimos un negocio rentable y el software que lo hace funcionar."</div>
-      <div class="who">— GRUPO ARPE · Filosofía Nexus</div>
+      <div class="q">"No construimos un software para luego buscar clientes. Construimos un ecosistema rentable — y el sistema que lo hace funcionar."</div>
+      <div class="who">— GRUPO ARPE · Tesis Nexus</div>
       <div class="stat-row">
-        <div class="stat"><b>11</b><span>Tipos de DTE</span></div>
+        <div class="stat"><b>5</b><span>Unidades del grupo</span></div>
         <div class="stat"><b>3en1</b><span>ERP·HCM·DTE</span></div>
-        <div class="stat"><b>2026</b><span>Norma lista</span></div>
+        <div class="stat"><b>2026</b><span>Norma DTE lista</span></div>
       </div>
     </div>
   </div>
@@ -326,7 +323,7 @@
     <div class="foot">
       <div>
         <a class="brand" href="#top">
-          <svg class="logomk" viewBox="0 0 40 40"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C4FF"/><stop offset="1" stop-color="#0066a0"/></linearGradient></defs><path d="M20 2 L35 11 V29 L20 38 L5 29 V11 Z" fill="none" stroke="url(#g2)" stroke-width="1.6"/><path d="M13 27 V14 L27 27 V14" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="2" fill="#00C4FF"/></svg>
+          <img class="logomk" src="assets/nexus-atom.png" alt="NEXUS AIO" />
           <b>NEXUS<i>AIO</i></b>
         </a>
         <p class="tg">El ecosistema financiero todo-en-uno. Una división de GRUPO ARPE S.A. de C.V.</p>
