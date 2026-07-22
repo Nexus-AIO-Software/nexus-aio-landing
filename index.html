@@ -1,388 +1,279 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NEXUS AIO — El ecosistema financiero todo-en-uno</title>
-<meta name="description" content="Nexus AIO unifica ERP, recursos humanos (HCM) y facturación electrónica (DTE) en un solo sistema, potenciado por Eva, la IA que ejecuta. Construido y probado en El Salvador." />
-<meta property="og:title" content="NEXUS AIO — Tu empresa, en un solo sistema" />
-<meta property="og:description" content="ERP · HCM · DTE · IA. El sistema operativo de la empresa moderna en Centroamérica." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --black:#050505; --navy:#001B3D; --navy-2:#06142b; --steel:#1A2B3C;
-    --cyan:#00C4FF; --cyan-2:#5BE0FF; --white:#FFFFFF;
-    --muted:#8AA0B8; --dim:#5C7088; --line:rgba(0,196,255,.16);
-    --glass:rgba(13,28,48,.55); --maxw:1180px;
-  }
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  body{font-family:'Inter',system-ui,sans-serif;background:var(--black);color:#E8EEF5;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  a{text-decoration:none;color:inherit}
-  ul{list-style:none}
-  canvas{display:block}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .orb{font-family:'Orbitron',sans-serif}
-  .exo{font-family:'Exo 2',sans-serif}
-  .eyebrow{font-family:'Exo 2',sans-serif;font-size:12px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--cyan)}
-  .grad{background:linear-gradient(110deg,#fff 0%,#9fe9ff 45%,var(--cyan) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1;transform:none}
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXUS AIO — El ecosistema financiero todo-en-uno</title>
+    <meta name="description" content="Nexus AIO unifica ERP, recursos humanos (HCM) y facturación electrónica (DTE) en un solo sistema, potenciado por Eva, la IA que ejecuta. Construido y probado en El Salvador." />
+    <meta property="og:title" content="NEXUS AIO — Tu empresa, en un solo sistema" />
+    <meta property="og:description" content="ERP · HCM · DTE · IA. El sistema operativo de la empresa moderna en Centroamérica." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config={theme:{extend:{colors:{cyan:'#00C4FF',muted:'#8AA0B8',dim:'#5C7088','nx-black':'#050505'},fontFamily:{exo:['"Exo 2"','sans-serif'],orb:['Orbitron','sans-serif']}}}}
+    </script>
+    <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      canvas{display:block}
+      .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+      .reveal.in{opacity:1;transform:none}
+      #navshell.sc{background:rgba(5,9,18,.75);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,196,255,.16)}
+      #hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(900px 600px at 70% 30%,rgba(0,196,255,.10),transparent 60%),radial-gradient(700px 500px at 10% 90%,rgba(0,27,61,.6),transparent 60%),linear-gradient(180deg,rgba(5,5,5,.2),#050505 96%)}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+      @keyframes breathe{0%,100%{box-shadow:0 0 60px rgba(0,196,255,.3),inset 0 0 40px rgba(0,196,255,.15);border-color:rgba(0,196,255,.4)}50%{box-shadow:0 0 130px rgba(0,196,255,.75),inset 0 0 80px rgba(0,196,255,.4);border-color:#00C4FF}}
+      @keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+      .mod::before{content:"";position:absolute;inset:0;border-radius:18px;padding:1px;background:linear-gradient(140deg,rgba(0,196,255,.5),transparent 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.35s}
+      .mod:hover::before{opacity:1}
+      .mod li::before{content:"";width:5px;height:5px;border-radius:50%;background:#00C4FF;box-shadow:0 0 8px #00C4FF;flex-shrink:0}
+      .mod li{display:flex;gap:9px;align-items:center;color:#a9c0d4;font-size:.8rem}
+      .eva-orb::before,.eva-orb::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(0,196,255,.25)}
+      .eva-orb::after{inset:-28px;border-color:rgba(0,196,255,.12)}
+      .cta-box{position:relative}.cta-box::before{content:"";position:absolute;inset:0;opacity:.5;background:radial-gradient(600px 300px at 50% -20%,rgba(0,196,255,.25),transparent 60%)}
+      .cta-box>*{position:relative}
+      .mob.open{display:flex}
 
-  /* glow utility */
-  .glow{box-shadow:0 0 0 1px var(--line),0 20px 60px rgba(0,0,0,.55),0 0 60px rgba(0,196,255,.07)}
+    </style>
+  </head>
+  <body class="font-['Inter'] bg-nx-black text-[#E8EEF5] leading-relaxed antialiased overflow-x-hidden">
 
-  /* Buttons */
-  .btn{display:inline-flex;align-items:center;gap:10px;font-family:'Exo 2',sans-serif;font-weight:700;font-size:14px;letter-spacing:.6px;padding:15px 30px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:.25s ease;position:relative;overflow:hidden}
-  .btn-cyan{background:linear-gradient(120deg,var(--cyan),#0096d6);color:#021018;box-shadow:0 0 30px rgba(0,196,255,.35)}
-  .btn-cyan:hover{transform:translateY(-2px);box-shadow:0 0 46px rgba(0,196,255,.6)}
-  .btn-ghost{border-color:rgba(0,196,255,.35);color:#cfe9f7;background:rgba(0,196,255,.03)}
-  .btn-ghost:hover{border-color:var(--cyan);background:rgba(0,196,255,.08);color:#fff}
-
-  /* Nav */
-  #navshell{position:fixed;inset:0 0 auto 0;z-index:100;transition:.3s ease}
-  #navshell.sc{background:rgba(5,9,18,.75);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-  nav{display:flex;align-items:center;justify-content:space-between;height:76px;max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .brand{display:flex;align-items:center;gap:11px}
-  .brand .logomk{width:38px;height:38px;object-fit:contain;mix-blend-mode:screen}
-  .hero-logo{width:min(300px,64vw);height:auto;margin:0 auto 20px;display:block;mix-blend-mode:screen;filter:drop-shadow(0 0 38px rgba(0,196,255,.45))}
-  .brand b{font-family:'Orbitron',sans-serif;font-weight:900;font-size:18px;letter-spacing:2px;color:#fff}
-  .brand b i{color:var(--cyan);font-style:normal}
-  .nlinks{display:flex;align-items:center;gap:32px}
-  .nlinks a{font-family:'Exo 2',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#9fb4c8;transition:.2s}
-  .nlinks a:hover{color:var(--cyan)}
-  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
-  .burger span{width:24px;height:2px;background:var(--cyan);transition:.3s}
-  .mob{display:none;position:fixed;top:76px;left:0;right:0;z-index:99;background:rgba(5,9,18,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:22px 24px 30px;flex-direction:column;gap:18px}
-  .mob.open{display:flex}
-  .mob a{font-family:'Exo 2',sans-serif;color:#cfe9f7;font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:14px}
-
-  /* Hero */
-  #hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
-  #net{position:absolute;inset:0;z-index:0;opacity:.9}
-  #hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:radial-gradient(900px 600px at 70% 30%,rgba(0,196,255,.10),transparent 60%),
-      radial-gradient(700px 500px at 10% 90%,rgba(0,27,61,.6),transparent 60%),
-      linear-gradient(180deg,rgba(5,5,5,.2),var(--black) 96%)}
-  .hero-in{position:relative;z-index:2;text-align:center;padding:130px 0 90px;width:100%}
-  .hero-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:100px;padding:8px 18px;background:rgba(0,196,255,.05);backdrop-filter:blur(4px);margin-bottom:30px}
-  .hero-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  .hero-badge span{font-family:'Exo 2',sans-serif;font-size:11.5px;letter-spacing:3px;text-transform:uppercase;color:#bfe6f7;font-weight:600}
-  #hero h1{font-family:'Exo 2',sans-serif;font-weight:800;font-size:clamp(2.4rem,6vw,5rem);line-height:1.04;letter-spacing:-1px;margin-bottom:24px}
-  #hero h1 .l2{font-weight:300}
-  #hero p.sub{font-size:clamp(1rem,1.7vw,1.25rem);color:var(--muted);max-width:60ch;margin:0 auto 40px;font-weight:300}
-  .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-  .hero-tags{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:56px}
-  .htag{font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:3px;color:#7fd8f5;border:1px solid var(--line);border-radius:6px;padding:9px 16px;background:rgba(0,196,255,.03)}
-  .scroll-ind{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:#3d6c86;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Exo 2',sans-serif}
-
-  /* Section base */
-  section.pad{padding:clamp(80px,11vw,150px) 0;position:relative}
-  .shead{text-align:center;max-width:780px;margin:0 auto}
-  .shead h2{font-family:'Exo 2',sans-serif;font-weight:800;font-size:clamp(1.9rem,4vw,3rem);line-height:1.1;letter-spacing:-.5px;margin:16px 0 18px}
-  .shead p{color:var(--muted);font-size:1.08rem;font-weight:300}
-
-  /* Convergencia */
-  #conv{background:linear-gradient(180deg,var(--black),#03101f 50%,var(--black))}
-  .conv-stage{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;max-width:880px;margin:64px auto 0}
-  .conv-col{display:flex;flex-direction:column;gap:16px}
-  .conv-pill{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--glass);backdrop-filter:blur(8px);transition:.3s}
-  .conv-pill:hover{border-color:rgba(0,196,255,.5);transform:translateX(0) scale(1.02);box-shadow:0 0 30px rgba(0,196,255,.12)}
-  .conv-pill .pic{width:38px;height:38px;flex:0 0 auto;border-radius:9px;background:rgba(0,196,255,.1);display:flex;align-items:center;justify-content:center}
-  .conv-pill .pic svg{width:20px;height:20px;stroke:var(--cyan);fill:none;stroke-width:1.7}
-  .conv-pill b{font-family:'Exo 2',sans-serif;font-size:15px;color:#fff;display:block}
-  .conv-pill small{color:var(--dim);font-size:12px}
-  .conv-core{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;
-    background:radial-gradient(circle at 50% 40%,rgba(0,196,255,.25),rgba(0,27,61,.6));
-    border:1px solid rgba(0,196,255,.4);box-shadow:0 0 60px rgba(0,196,255,.3),inset 0 0 40px rgba(0,196,255,.15);animation:breathe 4s ease-in-out infinite}
-  @keyframes breathe{0%,100%{box-shadow:0 0 60px rgba(0,196,255,.3),inset 0 0 40px rgba(0,196,255,.15)}50%{box-shadow:0 0 90px rgba(0,196,255,.5),inset 0 0 55px rgba(0,196,255,.25)}}
-  .conv-core b{font-family:'Orbitron',sans-serif;font-weight:900;font-size:22px;color:#fff;letter-spacing:1px}
-  .conv-core small{font-family:'Orbitron',sans-serif;color:var(--cyan);font-size:11px;letter-spacing:3px}
-
-  /* Módulos */
-  .mod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-top:60px}
-  .mod{position:relative;border-radius:18px;padding:34px 30px;background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--line);overflow:hidden;transition:.35s}
-  .mod::before{content:"";position:absolute;inset:0;border-radius:18px;padding:1px;background:linear-gradient(140deg,rgba(0,196,255,.5),transparent 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.35s}
-  .mod:hover{transform:translateY(-8px);box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 50px rgba(0,196,255,.12)}
-  .mod:hover::before{opacity:1}
-  .mod .ic{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(0,196,255,.18),rgba(0,27,61,.5));border:1px solid var(--line);margin-bottom:22px}
-  .mod .ic svg{width:28px;height:28px;stroke:var(--cyan);fill:none;stroke-width:1.6}
-  .mod .tag{font-family:'Orbitron',sans-serif;font-size:10.5px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase}
-  .mod h3{font-family:'Exo 2',sans-serif;font-weight:700;font-size:1.5rem;color:#fff;margin:5px 0 10px}
-  .mod p{color:var(--muted);font-size:.95rem;font-weight:300}
-  .mod ul{margin-top:16px;display:flex;flex-direction:column;gap:8px}
-  .mod li{font-size:.86rem;color:#a9c0d4;display:flex;gap:9px;align-items:center}
-  .mod li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);flex:0 0 auto}
-
-  /* Real world / proof */
-  #real{background:radial-gradient(800px 500px at 85% 10%,rgba(0,27,61,.7),transparent 60%)}
-  .real-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
-  .real-grid h2{font-family:'Exo 2',sans-serif;font-weight:800;font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.12;margin-bottom:18px}
-  .real-grid p{color:var(--muted);font-weight:300;margin-bottom:14px}
-  .proof-card{border:1px solid var(--line);border-radius:18px;padding:34px;background:var(--glass);backdrop-filter:blur(10px)}
-  .proof-card .q{font-family:'Exo 2',sans-serif;font-size:1.25rem;color:#fff;font-style:italic;line-height:1.5;margin-bottom:20px}
-  .proof-card .who{color:var(--cyan);font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:2px}
-  .stat-row{display:flex;gap:30px;flex-wrap:wrap;margin-top:26px}
-  .stat b{font-family:'Orbitron',sans-serif;font-size:2.2rem;color:#fff;display:block;line-height:1}
-  .stat span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);font-family:'Exo 2',sans-serif}
-
-  /* Eva */
-  #eva{text-align:center;background:linear-gradient(180deg,var(--black),#04101e)}
-  .eva-orb{width:120px;height:120px;margin:0 auto 30px;border-radius:50%;position:relative;
-    background:radial-gradient(circle at 50% 40%,rgba(0,196,255,.35),rgba(0,27,61,.7));
-    box-shadow:0 0 80px rgba(0,196,255,.4),inset 0 0 50px rgba(0,196,255,.2);animation:breathe 3.5s ease-in-out infinite}
-  .eva-orb::before,.eva-orb::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(0,196,255,.25)}
-  .eva-orb::after{inset:-28px;border-color:rgba(0,196,255,.12)}
-  #eva h2{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3.4rem);color:#fff;letter-spacing:2px;margin-bottom:16px}
-  #eva p{color:var(--muted);max-width:58ch;margin:0 auto;font-weight:300;font-size:1.1rem}
-
-  /* CTA */
-  #cta{position:relative}
-  .cta-box{border-radius:26px;padding:clamp(40px,7vw,80px);text-align:center;position:relative;overflow:hidden;
-    background:linear-gradient(140deg,#03142a,#061f3d);border:1px solid rgba(0,196,255,.25)}
-  .cta-box::before{content:"";position:absolute;inset:0;opacity:.5;
-    background:radial-gradient(600px 300px at 50% -20%,rgba(0,196,255,.25),transparent 60%)}
-  .cta-box>*{position:relative}
-  .cta-box h2{font-family:'Exo 2',sans-serif;font-weight:800;font-size:clamp(1.9rem,4vw,3rem);color:#fff;margin-bottom:14px}
-  .cta-box p{color:#a9c0d4;margin-bottom:32px;font-weight:300}
-
-  /* Footer */
-  footer{border-top:1px solid var(--line);padding:50px 0 32px;background:#03080f}
-  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;align-items:flex-start}
-  footer .brand b{font-size:17px}
-  footer p.tg{color:var(--dim);font-size:13px;margin-top:8px;max-width:280px}
-  footer .col h5{font-family:'Exo 2',sans-serif;color:#cfe9f7;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:13px}
-  footer .col a{display:block;color:#7f96aa;font-size:13.5px;margin-bottom:8px;transition:.2s}
-  footer .col a:hover{color:var(--cyan)}
-  .flegal{margin-top:38px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:#4d6478}
-
-  @media(max-width:880px){
-    .nlinks{display:none}.burger{display:flex}
-    .conv-stage{grid-template-columns:1fr;gap:24px}.conv-core{margin:6px auto}
-    .real-grid{grid-template-columns:1fr;gap:34px}
-  }
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<div id="navshell">
-  <nav>
-    <a class="brand" href="#top">
-      <img class="logomk" src="assets/nexus-atom.png" alt="NEXUS AIO" />
-      <b>NEXUS<i>AIO</i></b>
-    </a>
-    <div class="nlinks">
-      <a href="#conv">Ecosistema</a>
-      <a href="#modulos">Módulos</a>
-      <a href="#eva">Eva IA</a>
-      <a class="btn btn-cyan" href="#cta" style="padding:10px 22px;font-size:13px">Solicitar demo</a>
-    </div>
-    <div class="burger" id="burger"><span></span><span></span><span></span></div>
-  </nav>
-</div>
-<div class="mob" id="mob">
-  <a href="#conv">Ecosistema</a><a href="#modulos">Módulos</a><a href="#eva">Eva IA</a><a href="#cta">Solicitar demo</a>
-</div>
-<span id="top"></span>
-
-<!-- HERO -->
-<header id="hero">
-  <canvas id="net"></canvas>
-  <div class="wrap hero-in">
-    <img class="hero-logo" src="assets/nexus-logo.png" alt="NEXUS AIO — ecosistema todo-en-uno" />
-    <div class="hero-badge"><span class="pulse"></span><span>ERP · HCM · DTE · IA</span></div>
-    <h1>Tu empresa, en un<br><span class="grad">solo sistema</span>. <span class="l2">Operada por IA.</span></h1>
-    <p class="sub">Nexus AIO unifica finanzas, recursos humanos y facturación electrónica en un único ecosistema — potenciado por <b style="color:#bfe6f7;font-weight:600">Eva</b>, la inteligencia que ejecuta. Construido y probado en operaciones reales de El Salvador.</p>
-    <div class="hero-cta">
-      <a class="btn btn-cyan" href="#cta">Solicitar demo →</a>
-      <a class="btn btn-ghost" href="#conv">Explorar el ecosistema</a>
-    </div>
-    <div class="hero-tags">
-      <span class="htag">ERP</span><span class="htag">HCM</span><span class="htag">DTE 2026</span><span class="htag">EVA · IA</span>
-    </div>
-  </div>
-  <div class="scroll-ind">Scroll ↓</div>
-</header>
-
-<!-- CONVERGENCIA -->
-<section class="pad" id="conv">
-  <div class="wrap">
-    <div class="shead reveal">
-      <span class="eyebrow">El ecosistema</span>
-      <h2>Cuatro sistemas. <span class="grad">Un solo cerebro.</span></h2>
-      <p>El resto del mercado te vende módulos sueltos que no se hablan entre sí. Nexus AIO nace unificado: cada parte alimenta a las demás en tiempo real.</p>
-    </div>
-    <div class="conv-stage reveal">
-      <div class="conv-col">
-        <div class="conv-pill"><span class="pic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l3-3 3 3 5-6"/></svg></span><span><b>ERP</b><small>Finanzas · inventario · compras</small></span></div>
-        <div class="conv-pill"><span class="pic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0112 0M16 4a3 3 0 010 6M19 20a5.5 5.5 0 00-4-5.3"/></svg></span><span><b>HCM</b><small>Nómina · planillas · talento</small></span></div>
-      </div>
-      <div class="conv-core">
-        <b>NEXUS</b><small>AIO</small>
-      </div>
-      <div class="conv-col">
-        <div class="conv-pill"><span class="pic"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5M9.5 14h5M9.5 17h3"/></svg></span><span><b>DTE</b><small>Facturación electrónica · MH</small></span></div>
-        <div class="conv-pill"><span class="pic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span><span><b>EVA · IA</b><small>La inteligencia que ejecuta</small></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MÓDULOS -->
-<section class="pad" id="modulos">
-  <div class="wrap">
-    <div class="shead reveal">
-      <span class="eyebrow">Módulos</span>
-      <h2>Todo lo que tu negocio <span class="grad">necesita correr.</span></h2>
-      <p>Diseñado para la empresa salvadoreña y lista para escalar en Centroamérica.</p>
-    </div>
-    <div class="mod-grid">
-      <div class="mod reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l3-3 3 3 5-6"/></svg></div>
-        <span class="tag">Core · ERP</span><h3>Finanzas &amp; Operación</h3>
-        <p>El centro de control de tu empresa: contabilidad, inventario, compras y reportes que se actualizan solos.</p>
-        <ul><li>Contabilidad en tiempo real</li><li>Inventario y food cost</li><li>Reportes y márgenes automáticos</li></ul>
-      </div>
-      <div class="mod reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0112 0M16 4a3 3 0 010 6M19 20a5.5 5.5 0 00-4-5.3"/></svg></div>
-        <span class="tag">HCM</span><h3>Talento &amp; Nómina</h3>
-        <p>Gestión humana completa: planillas, asistencia, bonos por resultados y expediente digital de cada colaborador.</p>
-        <ul><li>Nómina y planillas automáticas</li><li>Bonos atados a KPIs</li><li>Perfil y progreso del empleado</li></ul>
-      </div>
-      <div class="mod reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5M9.5 14h5M9.5 17h3"/></svg></div>
-        <span class="tag">DTE · El Salvador</span><h3>Facturación Electrónica</h3>
-        <p>Los 11 tipos de DTE del Ministerio de Hacienda, construidos contra la versión obligatoria 2026. Firma, transmisión y contingencia incluidas.</p>
-        <ul><li>Los 11 tipos de DTE</li><li>Listo para la norma dic-2026</li><li>Contingencia y sello automático</li></ul>
-      </div>
-      <div class="mod reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
-        <span class="tag">Inteligencia · Eva</span><h3>Eva — IA que ejecuta</h3>
-        <p>No es un chatbot. Eva lee tus datos, cierra el día por ti y te avisa lo que importa antes de que sea un problema.</p>
-        <ul><li>Cierre y resumen automático</li><li>Alertas predictivas</li><li>Decisiones con datos reales</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- REAL WORLD -->
-<section class="pad" id="real">
-  <div class="wrap real-grid">
-    <div class="reveal">
-      <span class="eyebrow">El método Nexus</span>
-      <h2>Validado en un ecosistema real, <span class="grad">no en un demo.</span></h2>
-      <p>Nexus AIO se construye dentro de GRUPO ARPE y se prueba en nuestras propias operaciones antes de salir al mercado. Cada módulo factura, paga nómina y cierra meses reales en nuestras empresas — empezando por Smoke Lover's, nuestro sandbox vivo.</p>
-      <p>Esa es la tesis del ecosistema: operaciones reales que <b style="color:#bfe6f7;font-weight:600">validan y financian</b> la tecnología, para escalar como el ERP de Centroamérica. Y mientras otros refactorizan código viejo para cumplir la norma DTE obligatoria, Nexus arranca construido sobre la versión 2026.</p>
-    </div>
-    <div class="proof-card reveal">
-      <div class="q">"No construimos un software para luego buscar clientes. Construimos un ecosistema rentable — y el sistema que lo hace funcionar."</div>
-      <div class="who">— GRUPO ARPE · Tesis Nexus</div>
-      <div class="stat-row">
-        <div class="stat"><b>5</b><span>Unidades del grupo</span></div>
-        <div class="stat"><b>3en1</b><span>ERP·HCM·DTE</span></div>
-        <div class="stat"><b>2026</b><span>Norma DTE lista</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EVA -->
-<section class="pad" id="eva">
-  <div class="wrap">
-    <div class="eva-orb reveal"></div>
-    <div class="reveal">
-      <span class="eyebrow">La capa de inteligencia</span>
-      <h2>EVA</h2>
-      <p>La inteligencia artificial nativa de Nexus AIO. Eva no espera a que le preguntes: observa tu operación, ejecuta tareas y traduce cada dato en una decisión. La calculadora encendida de tu empresa — siempre prendida, siempre precisa.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="pad" id="cta">
-  <div class="wrap">
-    <div class="cta-box reveal">
-      <span class="eyebrow">Empieza hoy</span>
-      <h2>Llevá tu empresa al <span class="grad">siguiente sistema.</span></h2>
-      <p>Solicitá una demo y descubrí cómo se siente operar todo tu negocio desde un solo lugar.</p>
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-        <a class="btn btn-cyan" href="mailto:grupoarpe2026@gmail.com?subject=Solicitud%20de%20demo%20—%20Nexus%20AIO&body=Hola,%20quiero%20una%20demo%20de%20Nexus%20AIO.%20Mi%20empresa%20es:%20">Solicitar demo →</a>
-        <a class="btn btn-ghost" href="mailto:grupoarpe2026@gmail.com?subject=Lista%20de%20espera%20—%20Nexus%20AIO">Unirme a la lista de espera</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot">
-      <div>
-        <a class="brand" href="#top">
-          <img class="logomk" src="assets/nexus-atom.png" alt="NEXUS AIO" />
-          <b>NEXUS<i>AIO</i></b>
+    <!-- NAV -->
+    <div id="navshell" class="fixed inset-x-0 top-0 z-[100] transition-all duration-300">
+      <nav class="flex items-center justify-between h-[76px] w-full px-10">
+        <a class="flex items-center gap-[6px]" href="#top">
+          <img class="w-[80px] h-[80px] object-contain mix-blend-screen" src="assets/logoNexus.png" alt="NEXUS AIO" />
+          <b class="font-orb font-black text-lg tracking-[2px] text-white">NEXUS<i class="text-cyan not-italic">AIO</i></b>
         </a>
-        <p class="tg">El ecosistema financiero todo-en-uno. Una división de GRUPO ARPE S.A. de C.V.</p>
+        <div class="flex items-center gap-8 max-[880px]:hidden">
+          <a class="font-exo text-xs font-semibold tracking-[1px] uppercase text-[#9fb4c8] hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-all" href="#conv">Ecosistema</a>
+          <a class="font-exo text-xs font-semibold tracking-[1px] uppercase text-[#9fb4c8] hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-all" href="#modulos">Módulos</a>
+          <a class="font-exo text-xs font-semibold tracking-[1px] uppercase text-[#9fb4c8] hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-all" href="#eva">Eva IA</a>
+          <a class="inline-flex items-center gap-[10px] font-exo font-bold text-xs tracking-[.6px] px-[22px] py-[10px] rounded-lg cursor-pointer border border-transparent transition-all duration-300 bg-gradient-to-r from-cyan to-[#0096d6] text-[#021018] shadow-[0_0_30px_rgba(0,196,255,.35)] hover:text-white hover:shadow-[0_0_46px_rgba(0,196,255,.6)]" href="#cta">Solicitar demo</a>
+        </div>
+        <div class="hidden max-[880px]:flex flex-col gap-[5px] cursor-pointer p-[6px]" id="burger"><span class="w-6 h-[2px] bg-cyan transition-all duration-300"></span><span class="w-6 h-[2px] bg-cyan transition-all duration-300"></span><span class="w-6 h-[2px] bg-cyan transition-all duration-300"></span></div>
+      </nav>
+    </div>
+    <div class="hidden fixed top-[76px] inset-x-0 z-[99] bg-[rgba(5,9,18,.97)] backdrop-blur-lg border-b border-cyan/16 w-full px-10 py-[22px] pb-[30px] flex-col gap-[18px]" id="mob">
+      <a class="font-exo text-[#cfe9f7] font-semibold tracking-[1px] uppercase text-sm hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-all" href="#conv">Ecosistema</a>
+      <a class="font-exo text-[#cfe9f7] font-semibold tracking-[1px] uppercase text-sm hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-all" href="#modulos">Módulos</a>
+      <a class="font-exo text-[#cfe9f7] font-semibold tracking-[1px] uppercase text-sm hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-all" href="#eva">Eva IA</a>
+      <a class="font-exo text-[#cfe9f7] font-semibold tracking-[1px] uppercase text-sm hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-all" href="#cta">Solicitar demo</a>
+    </div>
+    <span id="top"></span>
+
+    <!-- HERO -->
+    <header id="hero" class="relative h-[calc(110dvh-76px)] flex flex-col justify-center overflow-hidden">
+      <canvas id="net" class="absolute inset-0 z-0 opacity-90"></canvas>
+      <div class="relative z-[2] text-center w-full px-10">
+        <img class="w-[min(200px,50vw)] h-auto mx-auto mb-4 block mix-blend-screen drop-shadow-[0_0_38px_rgba(0,196,255,.45)]" src="assets/nexus-logo.png" alt="NEXUS AIO — ecosistema todo-en-uno" />
+        <div class="inline-flex items-center gap-[10px] border border-cyan/16 rounded-full px-[14px] py-1.5 bg-cyan/[.05] backdrop-blur-sm mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan shadow-[0_0_12px_#00C4FF] animate-[pulse_2s_infinite]"></span>
+          <span class="font-exo text-[10px] tracking-[3px] uppercase text-[#bfe6f7] font-semibold">ERP · HCM · DTE · IA</span>
+        </div>
+        <h1 class="font-exo font-extrabold text-[clamp(1.8rem,4.5vw,3.2rem)] leading-[1.04] tracking-[-1px] mb-4">Tu empresa, en un<br><span class="bg-gradient-to-r from-white via-[#9fe9ff] to-cyan bg-clip-text text-transparent">solo sistema</span>. <span class="font-light">Operada por IA.</span></h1>
+        <p class="text-[clamp(0.72rem,1.1vw,0.88rem)] text-muted max-w-[60ch] mx-auto mb-4 font-light">Nexus AIO unifica finanzas, recursos humanos y facturación electrónica en un único ecosistema — potenciado por <b class="text-[#bfe6f7] font-semibold">Eva</b>, la inteligencia que ejecuta. Construido y probado en operaciones reales de El Salvador.</p>
+        <div class="flex gap-2 justify-center flex-wrap">
+          <a class="inline-flex items-center gap-[6px] font-exo font-bold text-[11px] tracking-[.6px] px-4 py-[8px] rounded-lg cursor-pointer border border-transparent transition-all duration-300 bg-gradient-to-r from-cyan to-[#0096d6] text-[#021018] shadow-[0_0_30px_rgba(0,196,255,.35)] hover:text-white hover:shadow-[0_0_46px_rgba(0,196,255,.6)]" href="#cta">Solicitar demo →</a>
+          <a class="inline-flex items-center gap-[6px] font-exo font-bold text-[11px] tracking-[.6px] px-4 py-[8px] rounded-lg cursor-pointer border border-[rgba(0,196,255,.35)] text-[#cfe9f7] bg-cyan/[.03] transition-all duration-300 hover:border-cyan hover:bg-cyan/[.08] hover:text-white" href="#conv">Explorar el ecosistema</a>
+        </div>
+        <div class="flex gap-2 justify-center flex-wrap mt-4">
+          <span class="font-orb text-[9px] tracking-[3px] text-[#7fd8f5] border border-cyan/16 rounded px-2 py-1 bg-cyan/[.03]">ERP</span>
+          <span class="font-orb text-[9px] tracking-[3px] text-[#7fd8f5] border border-cyan/16 rounded px-2 py-1 bg-cyan/[.03]">HCM</span>
+          <span class="font-orb text-[9px] tracking-[3px] text-[#7fd8f5] border border-cyan/16 rounded px-2 py-1 bg-cyan/[.03]">DTE 2026</span>
+          <span class="font-orb text-[9px] tracking-[3px] text-[#7fd8f5] border border-cyan/16 rounded px-2 py-1 bg-cyan/[.03]">EVA · IA</span>
+        </div>
       </div>
-      <div class="col"><h5>Producto</h5><a href="#modulos">ERP</a><a href="#modulos">HCM</a><a href="#modulos">DTE</a><a href="#eva">Eva IA</a></div>
-      <div class="col"><h5>Ecosistema</h5><a href="#conv">Cómo funciona</a><a href="#real">Por qué Nexus</a><a href="https://nexusaiosoftware.github.io/grupo-arpe-landing/" target="_blank" rel="noopener">Grupo Arpe</a></div>
-      <div class="col"><h5>Contacto</h5><a href="mailto:grupoarpe2026@gmail.com">grupoarpe2026@gmail.com</a><a>El Salvador · Centroamérica</a></div>
-    </div>
-    <div class="flegal">
-      <span>© 2026 NEXUS AIO · GRUPO ARPE S.A. de C.V.</span>
-      <span>Diseñado en El Salvador · para Centroamérica</span>
-    </div>
-  </div>
-</footer>
+      <div class="absolute bottom-[26px] left-1/2 -translate-x-1/2 z-[3] flex items-center gap-2 font-exo text-[11px] tracking-[3px] uppercase text-cyan drop-shadow-[0_0_10px_rgba(0,196,255,.6)]">Scroll&nbsp;<span class="inline-block animate-[scrollBounce_2s_ease-in-out_infinite]">↓</span></div>
+    </header>
 
-<script>
-  // nav scroll
-  const ns=document.getElementById('navshell');
-  addEventListener('scroll',()=>ns.classList.toggle('sc',scrollY>30),{passive:true});
-  const bg=document.getElementById('burger'),mb=document.getElementById('mob');
-  bg.addEventListener('click',()=>mb.classList.toggle('open'));
-  mb.querySelectorAll('a').forEach(a=>a.onclick=()=>mb.classList.remove('open'));
-  // reveal
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    <!-- CONVERGENCIA -->
+    <section class="py-[clamp(80px,11vw,150px)] relative bg-gradient-to-b from-nx-black via-[#03101f] to-nx-black" id="conv">
+      <div class="w-full px-10">
+        <div class="text-center max-w-[780px] mx-auto reveal">
+          <span class="font-exo text-xs font-bold tracking-[5px] uppercase text-cyan">El ecosistema</span>
+          <h2 class="font-exo font-extrabold text-[clamp(1.9rem,4vw,3rem)] leading-[1.1] tracking-[-.5px] my-4 mb-[18px]">Cuatro sistemas. <span class="bg-gradient-to-r from-white via-[#9fe9ff] to-cyan bg-clip-text text-transparent">Un solo cerebro.</span></h2>
+          <p class="text-muted text-[1.08rem] font-light">El resto del mercado te vende módulos sueltos que no se hablan entre sí. Nexus AIO nace unificado: cada parte alimenta a las demás en tiempo real.</p>
+        </div>
+        <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-[18px] max-w-[880px] mx-auto mt-16 max-[880px]:grid-cols-1 max-[880px]:gap-6 reveal">
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center gap-3 border border-cyan/16 rounded-xl px-[18px] py-4 bg-[rgba(13,28,48,.55)] backdrop-blur transition-all duration-150 hover:border-cyan/50 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,196,255,.35)]">
+              <span class="w-[38px] h-[38px] flex-shrink-0 rounded-lg bg-cyan/10 flex items-center justify-center"><svg class="w-5 h-5 stroke-cyan fill-none" stroke-width="1.7" viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l3-3 3 3 5-6"/></svg></span>
+              <span><b class="font-exo text-[15px] text-white block">ERP</b><small class="text-dim text-xs">Finanzas · inventario · compras</small></span>
+            </div>
+            <div class="flex items-center gap-3 border border-cyan/16 rounded-xl px-[18px] py-4 bg-[rgba(13,28,48,.55)] backdrop-blur transition-all duration-150 hover:border-cyan/50 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,196,255,.35)]">
+              <span class="w-[38px] h-[38px] flex-shrink-0 rounded-lg bg-cyan/10 flex items-center justify-center"><svg class="w-5 h-5 stroke-cyan fill-none" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0112 0M16 4a3 3 0 010 6M19 20a5.5 5.5 0 00-4-5.3"/></svg></span>
+              <span><b class="font-exo text-[15px] text-white block">HCM</b><small class="text-dim text-xs">Nómina · planillas · talento</small></span>
+            </div>
+          </div>
+          <div class="w-[150px] h-[150px] rounded-full flex items-center justify-center flex-col bg-[radial-gradient(circle_at_50%_40%,rgba(0,196,255,.25),rgba(0,27,61,.6))] border border-[rgba(0,196,255,.4)] shadow-[0_0_60px_rgba(0,196,255,.3),inset_0_0_40px_rgba(0,196,255,.15)] animate-[breathe_2.5s_ease-in-out_infinite] max-[880px]:mx-auto max-[880px]:my-[6px]">
+            <b class="font-orb font-black text-[22px] text-white tracking-[1px]">NEXUS</b><small class="font-orb text-cyan text-[11px] tracking-[3px]">AIO</small>
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center gap-3 border border-cyan/16 rounded-xl px-[18px] py-4 bg-[rgba(13,28,48,.55)] backdrop-blur transition-all duration-150 hover:border-cyan/50 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,196,255,.35)]">
+              <span class="w-[38px] h-[38px] flex-shrink-0 rounded-lg bg-cyan/10 flex items-center justify-center"><svg class="w-5 h-5 stroke-cyan fill-none" stroke-width="1.7" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5M9.5 14h5M9.5 17h3"/></svg></span>
+              <span><b class="font-exo text-[15px] text-white block">DTE</b><small class="text-dim text-xs">Facturación electrónica · MH</small></span>
+            </div>
+            <div class="flex items-center gap-3 border border-cyan/16 rounded-xl px-[18px] py-4 bg-[rgba(13,28,48,.55)] backdrop-blur transition-all duration-150 hover:border-cyan/50 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,196,255,.35)]">
+              <span class="w-[38px] h-[38px] flex-shrink-0 rounded-lg bg-cyan/10 flex items-center justify-center"><svg class="w-5 h-5 stroke-cyan fill-none" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span>
+              <span><b class="font-exo text-[15px] text-white block">EVA · IA</b><small class="text-dim text-xs">La inteligencia que ejecuta</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  // ===== Hero neural network canvas =====
-  const cv=document.getElementById('net'),cx=cv.getContext('2d');
-  let W,H,pts,mouse={x:-999,y:-999};
-  function size(){W=cv.width=innerWidth;H=cv.height=Math.max(innerHeight,640);init()}
-  function init(){
-    const n=Math.min(90,Math.floor(W*H/16000));
-    pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}));
-  }
-  addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
-  addEventListener('mouseleave',()=>{mouse.x=mouse.y=-999});
-  function frame(){
-    cx.clearRect(0,0,W,H);
-    for(const p of pts){
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
-    }
-    const all=pts.concat([{x:mouse.x,y:mouse.y}]);
-    for(let i=0;i<all.length;i++){
-      for(let j=i+1;j<all.length;j++){
-        const a=all[i],b=all[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
-        const max=j===all.length-1?180:130;
-        if(d<max){
-          cx.strokeStyle='rgba(0,196,255,'+(0.18*(1-d/max))+')';
-          cx.lineWidth=1;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke();
-        }
+    <!-- MÓDULOS -->
+    <section class="py-[clamp(80px,11vw,150px)] relative" id="modulos">
+      <div class="w-full px-10">
+        <div class="text-center max-w-[780px] mx-auto reveal">
+          <span class="font-exo text-xs font-bold tracking-[5px] uppercase text-cyan">Módulos</span>
+          <h2 class="font-exo font-extrabold text-[clamp(1.2rem,3vw,2rem)] leading-[1.1] tracking-[-.5px] my-2 mb-[10px]">Todo lo que tu negocio <span class="bg-gradient-to-r from-white via-[#9fe9ff] to-cyan bg-clip-text text-transparent">necesita correr.</span></h2>
+          <p class="text-muted text-[clamp(0.78rem,1.1vw,0.88rem)] font-light">Diseñado para la empresa salvadoreña y lista para escalar en Centroamérica.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-[40px]">
+          <div class="mod relative rounded-[16px] p-[22px] bg-[rgba(13,28,48,.55)] backdrop-blur-[10px] border border-cyan/16 overflow-hidden transition-all duration-150 hover:border-cyan/50 hover:shadow-[0_0_40px_rgba(0,196,255,.35)] reveal">
+            <div class="w-10 h-10 rounded-[10px] flex items-center justify-center bg-gradient-to-br from-cyan/[.18] to-[rgba(0,27,61,.5)] border border-cyan/16 mb-3"><svg class="w-5 h-5 stroke-cyan fill-none" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l3-3 3 3 5-6"/></svg></div>
+            <span class="font-orb text-[9px] tracking-[2px] text-cyan uppercase">Core · ERP</span><h3 class="font-exo font-bold text-lg text-white my-[4px] mb-[8px]">Finanzas &amp; Operación</h3>
+            <p class="text-muted text-[.82rem] font-light">El centro de control de tu empresa: contabilidad, inventario, compras y reportes que se actualizan solos.</p>
+            <ul><li>Contabilidad en tiempo real</li><li>Inventario y food cost</li><li>Reportes y márgenes automáticos</li></ul>
+          </div>
+          <div class="mod relative rounded-[16px] p-[22px] bg-[rgba(13,28,48,.55)] backdrop-blur-[10px] border border-cyan/16 overflow-hidden transition-all duration-150 hover:border-cyan/50 hover:shadow-[0_0_40px_rgba(0,196,255,.35)] reveal">
+            <div class="w-10 h-10 rounded-[10px] flex items-center justify-center bg-gradient-to-br from-cyan/[.18] to-[rgba(0,27,61,.5)] border border-cyan/16 mb-3"><svg class="w-5 h-5 stroke-cyan fill-none" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0112 0M16 4a3 3 0 010 6M19 20a5.5 5.5 0 00-4-5.3"/></svg></div>
+            <span class="font-orb text-[9px] tracking-[2px] text-cyan uppercase">HCM</span><h3 class="font-exo font-bold text-lg text-white my-[4px] mb-[8px]">Talento &amp; Nómina</h3>
+            <p class="text-muted text-[.82rem] font-light">Gestión humana completa: planillas, asistencia, bonos por resultados y expediente digital de cada colaborador.</p>
+            <ul><li>Nómina y planillas automáticas</li><li>Bonos atados a KPIs</li><li>Perfil y progreso del empleado</li></ul>
+          </div>
+          <div class="mod relative rounded-[16px] p-[22px] bg-[rgba(13,28,48,.55)] backdrop-blur-[10px] border border-cyan/16 overflow-hidden transition-all duration-150 hover:border-cyan/50 hover:shadow-[0_0_40px_rgba(0,196,255,.35)] reveal">
+            <div class="w-10 h-10 rounded-[10px] flex items-center justify-center bg-gradient-to-br from-cyan/[.18] to-[rgba(0,27,61,.5)] border border-cyan/16 mb-3"><svg class="w-5 h-5 stroke-cyan fill-none" stroke-width="1.6" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7zM14 3v5h5M9.5 14h5M9.5 17h3"/></svg></div>
+            <span class="font-orb text-[9px] tracking-[2px] text-cyan uppercase">DTE · El Salvador</span><h3 class="font-exo font-bold text-lg text-white my-[4px] mb-[8px]">Facturación Electrónica</h3>
+            <p class="text-muted text-[.82rem] font-light">Los 11 tipos de DTE del Ministerio de Hacienda, construidos contra la versión obligatoria 2026. Firma, transmisión y contingencia incluidas.</p>
+            <ul><li>Los 11 tipos de DTE</li><li>Listo para la norma dic-2026</li><li>Contingencia y sello automático</li></ul>
+          </div>
+          <div class="mod relative rounded-[16px] p-[22px] bg-[rgba(13,28,48,.55)] backdrop-blur-[10px] border border-cyan/16 overflow-hidden transition-all duration-150 hover:border-cyan/50 hover:shadow-[0_0_40px_rgba(0,196,255,.35)] reveal">
+            <div class="w-10 h-10 rounded-[10px] flex items-center justify-center bg-gradient-to-br from-cyan/[.18] to-[rgba(0,27,61,.5)] border border-cyan/16 mb-3"><svg class="w-5 h-5 stroke-cyan fill-none" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+            <span class="font-orb text-[9px] tracking-[2px] text-cyan uppercase">Inteligencia · Eva</span><h3 class="font-exo font-bold text-lg text-white my-[4px] mb-[8px]">Eva — IA que ejecuta</h3>
+            <p class="text-muted text-[.82rem] font-light">No es un chatbot. Eva lee tus datos, cierra el día por ti y te avisa lo que importa antes de que sea un problema.</p>
+            <ul><li>Cierre y resumen automático</li><li>Alertas predictivas</li><li>Decisiones con datos reales</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REAL WORLD -->
+    <section class="py-[clamp(80px,11vw,150px)] relative bg-[radial-gradient(800px_500px_at_85%_10%,rgba(0,27,61,.7),transparent_60%)]" id="real">
+      <div class="w-full px-10 grid grid-cols-[1.05fr_.95fr] gap-[54px] items-center max-[880px]:grid-cols-1 max-[880px]:gap-[34px]">
+        <div class="reveal">
+          <span class="font-exo text-xs font-bold tracking-[5px] uppercase text-cyan">El método Nexus</span>
+          <h2 class="font-exo font-extrabold text-[clamp(1.8rem,3.6vw,2.7rem)] leading-[1.12] mb-[18px]">Validado en un ecosistema real, <span class="bg-gradient-to-r from-white via-[#9fe9ff] to-cyan bg-clip-text text-transparent">no en un demo.</span></h2>
+          <p class="text-muted font-light mb-[14px]">Nexus AIO se construye dentro de GRUPO ARPE y se prueba en nuestras propias operaciones antes de salir al mercado. Cada módulo factura, paga nómina y cierra meses reales en nuestras empresas — empezando por Smoke Lover's, nuestro sandbox vivo.</p>
+          <p class="text-muted font-light mb-[14px]">Esa es la tesis del ecosistema: operaciones reales que <b class="text-[#bfe6f7] font-semibold">validan y financian</b> la tecnología, para escalar como el ERP de Centroamérica. Y mientras otros refactorizan código viejo para cumplir la norma DTE obligatoria, Nexus arranca construido sobre la versión 2026.</p>
+        </div>
+        <div class="border border-cyan/16 rounded-[18px] p-[34px] bg-[rgba(13,28,48,.55)] backdrop-blur-[10px] reveal">
+          <div class="font-exo text-[1.25rem] text-white italic leading-[1.5] mb-5">"No construimos un software para luego buscar clientes. Construimos un ecosistema rentable — y el sistema que lo hace funcionar."</div>
+          <div class="text-cyan font-orb text-[11px] tracking-[2px]">— GRUPO ARPE · Tesis Nexus</div>
+          <div class="grid grid-cols-3 gap-6 mt-[26px]">
+            <div class="text-center"><b class="font-orb text-[2.2rem] text-white block leading-none">5</b><span class="text-[11px] tracking-[1.5px] uppercase text-dim font-exo">Unidades del grupo</span></div>
+            <div class="text-center"><b class="font-orb text-[2.2rem] text-white block leading-none">3en1</b><span class="text-[11px] tracking-[1.5px] uppercase text-dim font-exo">ERP·HCM·DTE</span></div>
+            <div class="text-center"><b class="font-orb text-[2.2rem] text-white block leading-none">2026</b><span class="text-[11px] tracking-[1.5px] uppercase text-dim font-exo">Norma DTE lista</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVA -->
+    <section class="py-[clamp(80px,11vw,150px)] relative text-center bg-gradient-to-b from-nx-black via-[#04101e] to-nx-black" id="eva">
+      <div class="w-full px-10">
+        <div class="eva-orb w-[120px] h-[120px] mx-auto mb-[30px] rounded-full relative bg-[radial-gradient(circle_at_50%_40%,rgba(0,196,255,.35),rgba(0,27,61,.7))] shadow-[0_0_80px_rgba(0,196,255,.4),inset_0_0_50px_rgba(0,196,255,.2)] animate-[breathe_2.5s_ease-in-out_infinite] reveal"></div>
+        <div class="reveal">
+          <span class="font-exo text-xs font-bold tracking-[5px] uppercase text-cyan">La capa de inteligencia</span>
+          <h2 class="font-orb font-black text-[clamp(2rem,5vw,3.4rem)] text-white tracking-[2px] mb-4">EVA</h2>
+          <p class="text-[#cfe9f7] max-w-[58ch] mx-auto font-light text-[1.1rem]">La inteligencia artificial nativa de Nexus AIO. Eva no espera a que le preguntes: observa tu operación, ejecuta tareas y traduce cada dato en una decisión. La calculadora encendida de tu empresa — siempre prendida, siempre precisa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-[clamp(80px,11vw,150px)] relative" id="cta">
+      <div class="w-full px-10">
+        <div class="cta-box rounded-[20px] py-[clamp(30px,5vw,50px)] px-[clamp(30px,5vw,50px)] text-center overflow-hidden bg-gradient-to-br from-[#03142a] to-[#061f3d] border border-[rgba(0,196,255,.25)] reveal max-w-[700px] mx-auto">
+          <span class="font-exo text-xs font-bold tracking-[5px] uppercase text-cyan">Empieza hoy</span>
+          <h2 class="font-exo font-extrabold text-[clamp(1.3rem,3vw,2rem)] text-white mb-3">Llevá tu empresa al <span class="bg-gradient-to-r from-white via-[#9fe9ff] to-cyan bg-clip-text text-transparent">siguiente sistema.</span></h2>
+          <p class="text-[#a9c0d4] mb-5 font-light text-[.92rem]">Solicitá una demo y descubrí cómo se siente operar todo tu negocio desde un solo lugar.</p>
+          <div class="flex gap-3 justify-center flex-wrap">
+            <a class="inline-flex items-center gap-[8px] font-exo font-bold text-[12px] tracking-[.6px] px-[20px] py-[10px] rounded-lg cursor-pointer border border-transparent transition-all duration-300 bg-gradient-to-r from-cyan to-[#0096d6] text-[#021018] shadow-[0_0_30px_rgba(0,196,255,.35)] hover:text-white hover:shadow-[0_0_46px_rgba(0,196,255,.6)]" href="mailto:grupoarpe2026@gmail.com?subject=Solicitud%20de%20demo%20—%20Nexus%20AIO&body=Hola,%20quiero%20una%20demo%20de%20Nexus%20AIO.%20Mi%20empresa%20es:%20">Solicitar demo →</a>
+            <a class="inline-flex items-center gap-[8px] font-exo font-bold text-[12px] tracking-[.6px] px-[20px] py-[10px] rounded-lg cursor-pointer border border-[rgba(0,196,255,.35)] text-[#cfe9f7] bg-cyan/[.03] transition-all duration-300 hover:border-cyan hover:bg-cyan/[.08] hover:text-white" href="mailto:grupoarpe2026@gmail.com?subject=Lista%20de%20espera%20—%20Nexus%20AIO">Unirme a la lista de espera</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-cyan/16 py-[50px] pb-[32px] bg-[#03080f]">
+      <div class="w-full px-10">
+        <div class="max-w-[1100px] mx-auto">
+          <div class="grid grid-cols-4 gap-8 max-[880px]:grid-cols-2 max-[500px]:grid-cols-1">
+            <div>
+        <a class="flex items-center gap-[6px]" href="#top">
+          <img class="w-[38px] h-[38px] object-contain mix-blend-screen" src="assets/logoNexus.png" alt="NEXUS AIO" />
+          <b class="font-orb font-black text-[17px] tracking-[2px] text-white">NEXUS<i class="text-cyan not-italic">AIO</i></b>
+        </a>
+              <p class="text-dim text-[13px] mt-2 max-w-[280px]">El ecosistema financiero todo-en-uno. Una división de GRUPO ARPE S.A. de C.V.</p>
+            </div>
+            <div class="col"><h5 class="font-exo text-[#cfe9f7] text-xs tracking-[1.5px] uppercase mb-[13px]">Producto</h5><a class="block text-[#7f96aa] text-[13.5px] mb-2 hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-colors" href="#modulos">ERP</a><a class="block text-[#7f96aa] text-[13.5px] mb-2 hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-colors" href="#modulos">HCM</a><a class="block text-[#7f96aa] text-[13.5px] mb-2 hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-colors" href="#modulos">DTE</a><a class="block text-[#7f96aa] text-[13.5px] mb-2 hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-colors" href="#eva">Eva IA</a></div>
+            <div class="col"><h5 class="font-exo text-[#cfe9f7] text-xs tracking-[1.5px] uppercase mb-[13px]">Ecosistema</h5><a class="block text-[#7f96aa] text-[13.5px] mb-2 hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-colors" href="#conv">Cómo funciona</a><a class="block text-[#7f96aa] text-[13.5px] mb-2 hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-colors" href="#real">Por qué Nexus</a><a class="block text-[#7f96aa] text-[13.5px] mb-2 hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-colors" href="https://nexusaiosoftware.github.io/grupo-arpe-landing/" target="_blank" rel="noopener">Grupo Arpe</a></div>
+            <div class="col"><h5 class="font-exo text-[#cfe9f7] text-xs tracking-[1.5px] uppercase mb-[13px]">Contacto</h5><a class="block text-[#7f96aa] text-[13.5px] mb-2 hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-colors" href="mailto:grupoarpe2026@gmail.com">grupoarpe2026@gmail.com</a><a class="block text-[#7f96aa] text-[13.5px] mb-2 hover:text-cyan hover:underline decoration-cyan underline-offset-4 transition-colors">El Salvador · Centroamérica</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-[38px] pt-5 border-t border-white/[.06] w-full px-10">
+        <div class="flex justify-between flex-wrap gap-[10px] text-xs text-[#4d6478]">
+          <span>© 2026 NEXUS AIO · GRUPO ARPE S.A. de C.V.</span>
+          <span>Diseñado en El Salvador · para Centroamérica</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const ns=document.getElementById('navshell');
+      addEventListener('scroll',()=>ns.classList.toggle('sc',scrollY>30),{passive:true});
+      const bg=document.getElementById('burger'),mb=document.getElementById('mob');
+      bg.addEventListener('click',()=>mb.classList.toggle('open'));
+      mb.querySelectorAll('a').forEach(a=>a.onclick=()=>mb.classList.remove('open'));
+      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+      document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+      const cv=document.getElementById('net'),cx=cv.getContext('2d');
+      let W,H,pts,mouse={x:-999,y:-999};
+      function size(){W=cv.width=innerWidth;H=cv.height=Math.max(innerHeight,640);init()}
+      function init(){
+        const n=Math.min(90,Math.floor(W*H/16000));
+        pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}));
       }
-    }
-    for(const p of pts){
-      cx.beginPath();cx.arc(p.x,p.y,1.6,0,7);cx.fillStyle='rgba(120,220,255,.85)';cx.fill();
-    }
-    requestAnimationFrame(frame);
-  }
-  size();addEventListener('resize',size);frame();
-</script>
-</body>
+      addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+      addEventListener('mouseleave',()=>{mouse.x=mouse.y=-999});
+      function frame(){
+        cx.clearRect(0,0,W,H);
+        for(const p of pts){
+          p.x+=p.vx;p.y+=p.vy;
+          if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
+        }
+        const all=pts.concat([{x:mouse.x,y:mouse.y}]);
+        for(let i=0;i<all.length;i++){
+          for(let j=i+1;j<all.length;j++){
+            const a=all[i],b=all[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+            const max=j===all.length-1?180:130;
+            if(d<max){
+              cx.strokeStyle='rgba(0,196,255,'+(0.18*(1-d/max))+')';
+              cx.lineWidth=1;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke();
+            }
+          }
+        }
+        for(const p of pts){
+          cx.beginPath();cx.arc(p.x,p.y,1.6,0,7);cx.fillStyle='rgba(120,220,255,.85)';cx.fill();
+        }
+        requestAnimationFrame(frame);
+      }
+      size();addEventListener('resize',size);frame();
+    </script>
+  </body>
 </html>
